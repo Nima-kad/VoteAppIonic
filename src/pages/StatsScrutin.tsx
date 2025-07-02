@@ -1,6 +1,7 @@
 import { IonButton } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { Bar, BarChart, Tooltip, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
 
 interface Stats {
   total: number;
@@ -10,7 +11,7 @@ interface Stats {
 const StatsScrutin: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [stats, setStats] = useState<Stats | null>(null);
-  const history = useHistory();  // <-- ici, useHistory au lieu de useNavigate
+  const history = useHistory();
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/v1/scrutins/${id}/stats`)
@@ -20,6 +21,12 @@ const StatsScrutin: React.FC = () => {
   }, [id]);
 
   if (!stats) return <div>Chargement des statistiques...</div>;
+
+  // Prépare les données pour le graphique
+  const data = [
+    { name: "Total inscrits", value: stats.total },
+    { name: "Total votants", value: stats.voted },
+  ];
 
   return (
     <div
@@ -55,6 +62,19 @@ const StatsScrutin: React.FC = () => {
       >
         Taux de participation : {((stats.voted / stats.total) * 100).toFixed(2)}%
       </p>
+
+      {/* Graphique bar chart */}
+      <ResponsiveContainer width="100%" height={250}>
+        <BarChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis allowDecimals={false} />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="value" fill="#8884d8" />
+        </BarChart>
+      </ResponsiveContainer>
+
       <IonButton onClick={() => history.push("/scrutins")} style={{ marginTop: "20px" }}>
         Retour à l&apos;accueil
       </IonButton>

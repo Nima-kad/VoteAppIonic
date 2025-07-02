@@ -38,7 +38,7 @@ const Members: React.FC = () => {
             <li key={member.id}>
                 {member.first_name} {member.last_name} - {member.birth_date} - {member.has_voted ? "Has voted" : <IonButton onClick={() => {
                 fetch(`http://localhost:3000/api/v1/members/${member.id}`, {
-                  method: "POST" // <-- ici ça devrait être PATCH
+                  method: "POST" 
                 })
                 .then(response => response.json())
                 .then(data => {

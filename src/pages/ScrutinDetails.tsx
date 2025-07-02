@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IonButton } from "@ionic/react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 interface Member {
   id: number;
@@ -12,6 +12,7 @@ interface Member {
 
 const ScrutinDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
   const [members, setMembers] = useState<Member[]>([]);
 
   useEffect(() => {
@@ -83,6 +84,9 @@ const ScrutinDetails: React.FC = () => {
           ))}
         </tbody>
       </table>
+      <IonButton onClick={() => history.push("/scrutins")} style={{ marginTop: "20px" }}>
+              Retour à l&apos;accueil
+            </IonButton>
     </div>
   );
 };

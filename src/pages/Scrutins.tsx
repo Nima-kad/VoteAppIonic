@@ -45,8 +45,7 @@ const Scrutins: React.FC = () => {
           <strong>Fin :</strong> {new Date(s.ends_at).toLocaleString()}
         </p>
         <div style={{ display: "flex", gap: "10px" }}>
-          
-          {/* j'ai fait un button pour voir les membres et un autre pour voir les stats */}
+
           <IonButton
             style={{ flex: 1 }}
             onClick={() => history.push(`/scrutins/${s.id}/members`)}

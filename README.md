@@ -25,8 +25,9 @@ On peut voir la liste des scrutins, accéder aux membres de chaque scrutin, vote
 - j'ai ajouter un bouton « Voter » à côté de chaque membre qui n'a pas vote( ? has-voted)
 - Le bouton disparaît et est remplacé par un label « A voté » une fois que le vote est effectué comme demander 
 - j'ai créé ’une page pour voir les statistiques d’un scrutin on cliquant sur le button a cote de chaque scruntin dans la page d’accueil 
-- afficher les statistiques sous forme d'un cadre
+- afficher les statistiques
 - j'ai ajouter une classe CSS pour styliser les tableaux des scrutins, membres et statistiques
+- Mise en place du graphique sur la page des statistiques
 - Ajout d’un bouton pour revenir à la page d’accueil depuis les pages de vote et de statistiques
 
 ---
